@@ -1,230 +1,225 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pembelajaran Interaktif - Manipulasi Data</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecel Lezat - Warung Bu Sarmi</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #f5f7fa;
+      background-color: #fffdf5;
       color: #333;
-      text-align: center;
     }
+
     header {
-      background: linear-gradient(90deg, #007bff, #00bcd4);
+      background-color: #27ae60;
       color: white;
-      padding: 2rem 1rem;
+      text-align: center;
+      padding: 1.5rem 1rem;
       border-radius: 0 0 20px 20px;
     }
-    h1 { margin-bottom: 0.5rem; }
-    main { padding-bottom: 3rem; }
-    .cards {
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0.3rem 0;
+      font-style: italic;
+    }
+
+    main {
+      padding: 2rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem;
+      gap: 1.5rem;
     }
+
     .card {
       background: white;
-      padding: 1.5rem;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
     }
+
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-    .hidden { display: none; }
-    #content-area {
-      background: white;
-      margin: 2rem;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      animation: fadeIn 0.4s ease-in-out;
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
-    input, textarea, button {
-      margin: 0.5rem;
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+
+    .card-content {
+      padding: 1rem;
     }
-    button {
-      background-color: #007bff;
+
+    .card h3 {
+      margin: 0.5rem 0;
+      color: #27ae60;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #e67e22;
+    }
+
+    .card button {
+      background-color: #27ae60;
       color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .card button:hover {
+      background-color: #1e8449;
+    }
+
+    .cart {
+      background: white;
+      padding: 1.5rem;
+      border-top: 3px solid #27ae60;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      bottom: 0;
+    }
+
+    .cart h2 {
+      margin-top: 0;
+    }
+
+    .cart p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #e67e22;
+    }
+
+    .cart button {
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
     }
-    button:hover { background-color: #0056b3; }
-    footer {
-      background-color: #007bff;
-      color: white;
-      padding: 1rem;
-      border-radius: 20px 20px 0 0;
+
+    .cart button:hover {
+      background-color: #ca6f1e;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #27ae60;
+      color: white;
+      margin-top: 2rem;
+      border-radius: 20px 20px 0 0;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>📊 Pembelajaran Interaktif: Manipulasi Data</h1>
-    <p>Mata Pelajaran Informatika - Fase E | SMA Negeri 2 Playen</p>
+    <h1>🌿 Warung Pecel Bu Sarmi</h1>
+    <p>Pecel nikmat, sehat, dan penuh cita rasa tradisional</p>
   </header>
 
   <main>
-    <section class="cards">
-      <div class="card" onclick="showContent(1)">
-        <h2>1️⃣ Konsep Manipulasi Data</h2>
-        <p>Menjelaskan teknik manipulasi data digital</p>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1617196035137-9cbbbc0b80f9?auto=format&fit=crop&w=800&q=80" alt="Pecel Sayur">
+      <div class="card-content">
+        <h3>Pecel Sayur</h3>
+        <p>Sayuran segar dengan bumbu kacang khas Madiun.</p>
+        <p class="price">Rp10.000</p>
+        <button onclick="tambahKeranjang('Pecel Sayur', 10000)">Tambah ke Keranjang</button>
       </div>
-      <div class="card" onclick="showContent(2)">
-        <h2>2️⃣ Praktik Mengolah Data</h2>
-        <p>Menerapkan teknik manipulasi dengan Google Sheets</p>
-      </div>
-      <div class="card" onclick="showContent(3)">
-        <h2>3️⃣ Analisis Data</h2>
-        <p>Menganalisis data menjadi informasi berguna</p>
-      </div>
-      <div class="card" onclick="showContent(4)">
-        <h2>4️⃣ Refleksi & Kuis</h2>
-        <p>Melatih berpikir kritis melalui latihan interaktif</p>
-      </div>
-    </section>
+    </div>
 
-    <section id="content-area" class="hidden"></section>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1625938145650-5e68237a7b27?auto=format&fit=crop&w=800&q=80" alt="Pecel Lele">
+      <div class="card-content">
+        <h3>Pecel Lele</h3>
+        <p>Lele goreng renyah disajikan dengan sambal pecel pedas.</p>
+        <p class="price">Rp15.000</p>
+        <button onclick="tambahKeranjang('Pecel Lele', 15000)">Tambah ke Keranjang</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1625938145807-ff8f81cf2c60?auto=format&fit=crop&w=800&q=80" alt="Pecel Ayam">
+      <div class="card-content">
+        <h3>Pecel Ayam</h3>
+        <p>Ayam goreng gurih berpadu dengan sambal kacang dan lalapan.</p>
+        <p class="price">Rp18.000</p>
+        <button onclick="tambahKeranjang('Pecel Ayam', 18000)">Tambah ke Keranjang</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1613522837153-0ffb88e38a61?auto=format&fit=crop&w=800&q=80" alt="Nasi Pecel Komplit">
+      <div class="card-content">
+        <h3>Nasi Pecel Komplit</h3>
+        <p>Pecel, rempeyek, tempe goreng, dan tahu dalam satu piring.</p>
+        <p class="price">Rp20.000</p>
+        <button onclick="tambahKeranjang('Nasi Pecel Komplit', 20000)">Tambah ke Keranjang</button>
+      </div>
+    </div>
   </main>
 
+  <div class="cart">
+    <h2>🛒 Keranjang Belanja</h2>
+    <div id="daftarKeranjang"></div>
+    <p id="totalHarga">Total: Rp0</p>
+    <button onclick="pesanSekarang()">Pesan Sekarang</button>
+  </div>
+
   <footer>
-    <p>© 2025 Gempita Rizki Ramadhan - Guru Informatika | SMA Negeri 2 Playen</p>
+    <p>© 2025 Warung Pecel Bu Sarmi - Dibuat oleh Gempita Rizki Ramadhan</p>
   </footer>
 
   <script>
-    function showContent(id) {
-      const content = document.getElementById("content-area");
-      content.classList.remove("hidden");
-      let html = "";
+    let total = 0;
+    let keranjang = [];
 
-      if (id === 1) {
-        html = `
-          <h2>🧩 Konsep Manipulasi Data</h2>
-          <p>Manipulasi data adalah proses mengubah, mengatur, dan mengelola data agar lebih mudah dianalisis.</p>
-          <p>Contoh fungsi dalam Google Sheets: <b>SORT, FILTER, AVERAGE, SUM</b></p>
-          <p>Aktivitas: Pahami konsep manipulasi data dan lanjutkan ke kuis di bawah ini.</p>
-          <button onclick="startQuiz()">Mulai Kuis</button>
-          <div id="quizArea"></div>
-        `;
-      } 
-      else if (id === 2) {
-        html = `
-          <h2>💻 Praktik Mengolah Data</h2>
-          <p>Masukkan data berikut untuk menghitung rata-rata otomatis:</p>
-          <input type="number" id="n1" placeholder="Nilai 1" />
-          <input type="number" id="n2" placeholder="Nilai 2" />
-          <input type="number" id="n3" placeholder="Nilai 3" />
-          <button onclick="hitungRata()">Hitung</button>
-          <p id="hasil"></p>
-        `;
-      } 
-      else if (id === 3) {
-        html = `
-          <h2>📈 Analisis Data</h2>
-          <p>Gunakan tombol di bawah ini untuk mengurutkan data penjualan (tinggi ke rendah):</p>
-          <button onclick="sortData()">Urutkan</button>
-          <ul id="dataList">
-            <li>Produk A - 70</li>
-            <li>Produk C - 50</li>
-            <li>Produk B - 90</li>
-          </ul>
-        `;
-      } 
-      else if (id === 4) {
-        html = `
-          <h2>🧠 Refleksi & Kuis</h2>
-          <p>Tulis hal yang kamu pelajari hari ini:</p>
-          <textarea id="refleksi" rows="4" cols="50"></textarea><br>
-          <button onclick="simpanRefleksi()">Kirim</button>
-          <p id="notif"></p>
-          <hr>
-          <h3>Kuis Singkat</h3>
-          <p>Pertanyaan: Fungsi apa yang digunakan untuk mencari nilai rata-rata di Google Sheets?</p>
-          <input type="text" id="jawabanKuis" placeholder="Tulis jawabanmu di sini" />
-          <button onclick="cekJawaban()">Periksa Jawaban</button>
-          <p id="hasilKuis"></p>
-        `;
-      }
-      content.innerHTML = html;
+    function tambahKeranjang(nama, harga) {
+      keranjang.push({ nama, harga });
+      total += harga;
+      updateKeranjang();
     }
 
-    function hitungRata() {
-      const n1 = parseFloat(document.getElementById("n1").value);
-      const n2 = parseFloat(document.getElementById("n2").value);
-      const n3 = parseFloat(document.getElementById("n3").value);
-      if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
-        document.getElementById("hasil").innerText = "⚠️ Masukkan semua nilai terlebih dahulu.";
-        return;
-      }
-      const hasil = ((n1 + n2 + n3) / 3).toFixed(2);
-      document.getElementById("hasil").innerText = `Rata-rata: ${hasil}`;
-    }
-
-    function sortData() {
-      const list = document.getElementById("dataList");
-      const items = Array.from(list.getElementsByTagName("li"));
-      items.sort((a, b) => {
-        const numA = parseInt(a.textContent.split("-")[1]);
-        const numB = parseInt(b.textContent.split("-")[1]);
-        return numB - numA;
+    function updateKeranjang() {
+      const daftar = document.getElementById('daftarKeranjang');
+      daftar.innerHTML = '';
+      keranjang.forEach((item, index) => {
+        const p = document.createElement('p');
+        p.textContent = `${index + 1}. ${item.nama} - Rp${item.harga.toLocaleString()}`;
+        daftar.appendChild(p);
       });
-      list.innerHTML = "";
-      items.forEach(li => list.appendChild(li));
+      document.getElementById('totalHarga').textContent = `Total: Rp${total.toLocaleString()}`;
     }
 
-    function simpanRefleksi() {
-      const teks = document.getElementById("refleksi").value;
-      if (teks.trim() === "") {
-        document.getElementById("notif").innerText = "⚠️ Silakan isi refleksimu dulu.";
+    function pesanSekarang() {
+      if (keranjang.length === 0) {
+        alert('Keranjang masih kosong, silakan pilih menu terlebih dahulu!');
       } else {
-        document.getElementById("notif").innerText = "✅ Refleksimu telah tersimpan. Hebat!";
-      }
-    }
-
-    function cekJawaban() {
-      const j = document.getElementById("jawabanKuis").value.toLowerCase();
-      const hasil = document.getElementById("hasilKuis");
-      if (j.includes("average")) {
-        hasil.innerText = "✅ Benar! Fungsi untuk rata-rata adalah =AVERAGE(range).";
-      } else {
-        hasil.innerText = "❌ Coba lagi. Petunjuk: diawali dengan huruf A dan menghitung nilai rata-rata.";
-      }
-    }
-
-    function startQuiz() {
-      const area = document.getElementById("quizArea");
-      area.innerHTML = `
-        <p>Pertanyaan: Apa tujuan utama manipulasi data?</p>
-        <input type="text" id="jawaban1" placeholder="Tulis jawaban..." />
-        <button onclick="cekQuiz1()">Periksa</button>
-        <p id="hasilQuiz1"></p>
-      `;
-    }
-
-    function cekQuiz1() {
-      const ans = document.getElementById("jawaban1").value.toLowerCase();
-      const feedback = document.getElementById("hasilQuiz1");
-      if (ans.includes("mengolah") || ans.includes("menganalisis") || ans.includes("mengatur")) {
-        feedback.innerText = "✅ Betul! Tujuan manipulasi data adalah mengolah dan menganalisis data agar berguna.";
-      } else {
-        feedback.innerText = "❌ Masih kurang tepat, coba jelaskan kembali dengan kata kunci 'mengolah' atau 'menganalisis'.";
+        alert(`Terima kasih telah memesan di Warung Pecel Bu Sarmi!\nTotal pesanan Anda: Rp${total.toLocaleString()}`);
+        keranjang = [];
+        total = 0;
+        updateKeranjang();
       }
     }
   </script>
+
 </body>
 </html>
