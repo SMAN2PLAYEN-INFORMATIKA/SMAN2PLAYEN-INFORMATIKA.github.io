@@ -1,11 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pembelajaran Interaktif - Manipulasi Data</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: linear-gradient(90deg, #007bff, #00bcd4);
+      color: white;
+      padding: 2rem 1rem;
+      border-radius: 0 0 20px 20px;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    main { padding-bottom: 3rem; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .hidden { display: none; }
+    #content-area {
+      background: white;
+      margin: 2rem;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    input, textarea, button {
+      margin: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #0056b3; }
+    footer {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      border-radius: 20px 20px 0 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <h1>Ini hanya contoh </h1>
+  <header>
+    <h1>📊 Pembelajaran Interaktif: Manipulasi Data</h1>
+    <p>Mata Pelajaran Informatika - Fase E | SMA Negeri 2 Playen</p>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card" onclick="showContent(1)">
+        <h2>1️⃣ Konsep Manipulasi Data</h2>
+        <p>Menjelaskan teknik manipulasi data digital</p>
+      </div>
+      <div class="card" onclick="showContent(2)">
+        <h2>2️⃣ Praktik Mengolah Data</h2>
+        <p>Menerapkan teknik manipulasi dengan Google Sheets</p>
+      </div>
+      <div class="card" onclick="showContent(3)">
+        <h2>3️⃣ Analisis Data</h2>
+        <p>Menganalisis data menjadi informasi berguna</p>
+      </div>
+      <div class="card" onclick="showContent(4)">
+        <h2>4️⃣ Refleksi & Kuis</h2>
+        <p>Melatih berpikir kritis melalui latihan interaktif</p>
+      </div>
+    </section>
+
+    <section id="content-area" class="hidden"></section>
+  </main>
+
+  <footer>
+    <p>© 2025 Gempita Rizki Ramadhan - Guru Informatika | SMA Negeri 2 Playen</p>
+  </footer>
+
+  <script>
+    function showContent(id) {
+      const content = document.getElementById("content-area");
+      content.classList.remove("hidden");
+      let html = "";
+
+      if (id === 1) {
+        html = `
+          <h2>🧩 Konsep Manipulasi Data</h2>
+          <p>Manipulasi data adalah proses mengubah, mengatur, dan mengelola data agar lebih mudah dianalisis.</p>
+          <p>Contoh fungsi dalam Google Sheets: <b>SORT, FILTER, AVERAGE, SUM</b></p>
+          <p>Aktivitas: Pahami konsep manipulasi data dan lanjutkan ke kuis di bawah ini.</p>
+          <button onclick="startQuiz()">Mulai Kuis</button>
+          <div id="quizArea"></div>
+        `;
+      } 
+      else if (id === 2) {
+        html = `
+          <h2>💻 Praktik Mengolah Data</h2>
+          <p>Masukkan data berikut untuk menghitung rata-rata otomatis:</p>
+          <input type="number" id="n1" placeholder="Nilai 1" />
+          <input type="number" id="n2" placeholder="Nilai 2" />
+          <input type="number" id="n3" placeholder="Nilai 3" />
+          <button onclick="hitungRata()">Hitung</button>
+          <p id="hasil"></p>
+        `;
+      } 
+      else if (id === 3) {
+        html = `
+          <h2>📈 Analisis Data</h2>
+          <p>Gunakan tombol di bawah ini untuk mengurutkan data penjualan (tinggi ke rendah):</p>
+          <button onclick="sortData()">Urutkan</button>
+          <ul id="dataList">
+            <li>Produk A - 70</li>
+            <li>Produk C - 50</li>
+            <li>Produk B - 90</li>
+          </ul>
+        `;
+      } 
+      else if (id === 4) {
+        html = `
+          <h2>🧠 Refleksi & Kuis</h2>
+          <p>Tulis hal yang kamu pelajari hari ini:</p>
+          <textarea id="refleksi" rows="4" cols="50"></textarea><br>
+          <button onclick="simpanRefleksi()">Kirim</button>
+          <p id="notif"></p>
+          <hr>
+          <h3>Kuis Singkat</h3>
+          <p>Pertanyaan: Fungsi apa yang digunakan untuk mencari nilai rata-rata di Google Sheets?</p>
+          <input type="text" id="jawabanKuis" placeholder="Tulis jawabanmu di sini" />
+          <button onclick="cekJawaban()">Periksa Jawaban</button>
+          <p id="hasilKuis"></p>
+        `;
+      }
+      content.innerHTML = html;
+    }
+
+    function hitungRata() {
+      const n1 = parseFloat(document.getElementById("n1").value);
+      const n2 = parseFloat(document.getElementById("n2").value);
+      const n3 = parseFloat(document.getElementById("n3").value);
+      if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+        document.getElementById("hasil").innerText = "⚠️ Masukkan semua nilai terlebih dahulu.";
+        return;
+      }
+      const hasil = ((n1 + n2 + n3) / 3).toFixed(2);
+      document.getElementById("hasil").innerText = `Rata-rata: ${hasil}`;
+    }
+
+    function sortData() {
+      const list = document.getElementById("dataList");
+      const items = Array.from(list.getElementsByTagName("li"));
+      items.sort((a, b) => {
+        const numA = parseInt(a.textContent.split("-")[1]);
+        const numB = parseInt(b.textContent.split("-")[1]);
+        return numB - numA;
+      });
+      list.innerHTML = "";
+      items.forEach(li => list.appendChild(li));
+    }
+
+    function simpanRefleksi() {
+      const teks = document.getElementById("refleksi").value;
+      if (teks.trim() === "") {
+        document.getElementById("notif").innerText = "⚠️ Silakan isi refleksimu dulu.";
+      } else {
+        document.getElementById("notif").innerText = "✅ Refleksimu telah tersimpan. Hebat!";
+      }
+    }
+
+    function cekJawaban() {
+      const j = document.getElementById("jawabanKuis").value.toLowerCase();
+      const hasil = document.getElementById("hasilKuis");
+      if (j.includes("average")) {
+        hasil.innerText = "✅ Benar! Fungsi untuk rata-rata adalah =AVERAGE(range).";
+      } else {
+        hasil.innerText = "❌ Coba lagi. Petunjuk: diawali dengan huruf A dan menghitung nilai rata-rata.";
+      }
+    }
+
+    function startQuiz() {
+      const area = document.getElementById("quizArea");
+      area.innerHTML = `
+        <p>Pertanyaan: Apa tujuan utama manipulasi data?</p>
+        <input type="text" id="jawaban1" placeholder="Tulis jawaban..." />
+        <button onclick="cekQuiz1()">Periksa</button>
+        <p id="hasilQuiz1"></p>
+      `;
+    }
+
+    function cekQuiz1() {
+      const ans = document.getElementById("jawaban1").value.toLowerCase();
+      const feedback = document.getElementById("hasilQuiz1");
+      if (ans.includes("mengolah") || ans.includes("menganalisis") || ans.includes("mengatur")) {
+        feedback.innerText = "✅ Betul! Tujuan manipulasi data adalah mengolah dan menganalisis data agar berguna.";
+      } else {
+        feedback.innerText = "❌ Masih kurang tepat, coba jelaskan kembali dengan kata kunci 'mengolah' atau 'menganalisis'.";
+      }
+    }
+  </script>
 </body>
 </html>
